@@ -649,9 +649,9 @@ const App: React.FC = () => {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                         {[
-                                            { img: "./public/images/polaroid/C-Jazz_Chill.png?auto=format&fit=crop&q=80&w=600", txt: "Jazz & Chill" },
-                                            { img: "./public/images/polaroid/C-primeros_momentos.png?auto=format&fit=crop&q=80&w=600", txt: "Ideal para esos primeros momentos..." },
-                                            { img: "./public/images/polaroid/C-Instrumental_Calidad.png?auto=format&fit=crop&q=80&w=600", txt: "Instrumental de Calidad" }
+                                            { img: "/public/images/polaroid/C-Jazz_Chill.png?auto=format&fit=crop&q=80&w=600", txt: "Jazz & Chill" },
+                                            { img: "/public/images/polaroid/C-primeros_momentos.png?auto=format&fit=crop&q=80&w=600", txt: "Ideal para esos primeros momentos..." },
+                                            { img: "/public/images/polaroid/C-Instrumental_Calidad.png?auto=format&fit=crop&q=80&w=600", txt: "Instrumental de Calidad" }
                                         ].map((item, i) => (
                                             <div key={i} className="scroll-reveal">''
                                                 <div className={`polaroid-item bg-white p-3 pb-12 shadow-2xl transform ${i % 2 === 0 ? '-rotate-2' : 'rotate-2'} hover:rotate-0 transition-transform duration-500 animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
@@ -673,9 +673,9 @@ const App: React.FC = () => {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                         {[
-                                            { img: "./public/images/polaroid/R-Al_corazon.png?auto=format&fit=crop&q=80&w=600", txt: "Al corazón" },
-                                            { img: "./public/images/polaroid/R-Canciones_de_amor.png?auto=format&fit=crop&q=80&w=600", txt: "Canciones de amor" },
-                                            { img: "./public/images/polaroid/R-Nostalgia_y_Lentos.png?auto=format&fit=crop&q=80&w=600", txt: "Nostalgia pura" },
+                                            { img: "/public/images/polaroid/R-Al_corazon.png?auto=format&fit=crop&q=80&w=600", txt: "Al corazón" },
+                                            { img: "/public/images/polaroid/R-Canciones_de_amor.png?auto=format&fit=crop&q=80&w=600", txt: "Canciones de amor" },
+                                            { img: "/public/images/polaroid/R-Nostalgia_y_Lentos.png?auto=format&fit=crop&q=80&w=600", txt: "Nostalgia pura" },
                                         ].map((item, i) => (
                                             <div key={i} className="scroll-reveal">
                                                 <div className={`polaroid-item bg-white p-3 pb-12 shadow-2xl transform ${i % 2 === 0 ? 'rotate-1' : '-rotate-1'} hover:rotate-0 transition-transform duration-500 animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
@@ -697,9 +697,9 @@ const App: React.FC = () => {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                         {[
-                                            { img: "./public/images/polaroid/F-Euforia_Total.png?auto=format&fit=crop&q=80&w=600", txt: "Euforia Total" },
-                                            { img: "./public/images/polaroid/F-Canto_y_Fiesta.png?auto=format&fit=crop&q=80&w=600", txt: "Canto & Fiesta" },
-                                            { img: "./public/images/polaroid/F-Hasta_el_final.png?auto=format&fit=crop&q=80&w=600", txt: "Hasta el final" }
+                                            { img: "/public/images/polaroid/F-Euforia_Total.png?auto=format&fit=crop&q=80&w=600", txt: "Euforia Total" },
+                                            { img: "/public/images/polaroid/F-Canto_y_Fiesta.png?auto=format&fit=crop&q=80&w=600", txt: "Canto & Fiesta" },
+                                            { img: "/public/images/polaroid/F-Hasta_el_final.png?auto=format&fit=crop&q=80&w=600", txt: "Hasta el final" }
                                         ].map((item, i) => (
                                             <div key={i} className="scroll-reveal">
                                                 <div className={`polaroid-item bg-white p-3 pb-12 shadow-2xl transform ${i % 2 === 0 ? '-rotate-3' : 'rotate-3'} hover:rotate-0 transition-transform duration-500 animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
