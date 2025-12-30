@@ -16,11 +16,11 @@ declare global {
 }
 
 const MEMBERS: Member[] = [
-    { id: 1, name: "Nicolás Astorgano", role: "Bajo/Voz", instrumentIcon: "🎸", style: "Groove Elegante", influences: "Funk, Soul, Jazz", image: "/public/images/romanticos/Nico.png" },
-    { id: 2, name: "Juan José Ferreyra", role: "Voz", instrumentIcon: "🎙️", style: "Balada Pop", influences: "Balada Rock, Pop Latino, Bolero", image: "/public/images/romanticos/Juan.png" },
-    { id: 3, name: "Manuel Aguilar", role: "Voz", instrumentIcon: "🎤", style: "Caribe romántico", influences: "Salsa, Pop Latino, Bolero", image: "/public/images/romanticos/Manu.png" },
-    { id: 4, name: "Alan Vispo", role: "Guitarra", instrumentIcon: "🎸", style: "Solo & Textura", influences: "Jazz, Rock, Blues", image: "/public/images/romanticos/Alan.png" },
-    { id: 5, name: "Lautaro Parra", role: "Batería", instrumentIcon: "🥁", style: "El Corazón & Beat", influences: "Jazz, Rock, Pop", image: "/public/images/romanticos/Lauti.png" }
+    { id: 1, name: "Nicolás Astorgano", role: "Bajo/Voz", instrumentIcon: "🎸", style: "Groove Elegante", influences: "Funk, Soul, Jazz", image: "/public/images/romanticos/nico.png" },
+    { id: 2, name: "Juan José Ferreyra", role: "Voz", instrumentIcon: "🎙️", style: "Balada Pop", influences: "Balada Rock, Pop Latino, Bolero", image: "/public/images/romanticos/juan.png" },
+    { id: 3, name: "Manuel Aguilar", role: "Voz", instrumentIcon: "🎤", style: "Caribe romántico", influences: "Salsa, Pop Latino, Bolero", image: "/public/images/romanticos/manu.png" },
+    { id: 4, name: "Alan Vispo", role: "Guitarra", instrumentIcon: "🎸", style: "Solo & Textura", influences: "Jazz, Rock, Blues", image: "/public/images/romanticos/alan.png" },
+    { id: 5, name: "Lautaro Parra", role: "Batería", instrumentIcon: "🥁", style: "El Corazón & Beat", influences: "Jazz, Rock, Pop", image: "/public/images/romanticos/lauti.png" }
 ];
 
 type ViewState = 'home' | 'construction';
@@ -649,9 +649,9 @@ const App: React.FC = () => {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                         {[
-                                            { img: "/public/images/polaroid/C-Jazz_Chill.png?auto=format&fit=crop&q=80&w=600", txt: "Jazz & Chill" },
-                                            { img: "/public/images/polaroid/C-primeros_momentos.png?auto=format&fit=crop&q=80&w=600", txt: "Ideal para esos primeros momentos..." },
-                                            { img: "/public/images/polaroid/C-Instrumental_Calidad.png?auto=format&fit=crop&q=80&w=600", txt: "Instrumental de Calidad" }
+                                            { img: "/public/images/polaroid/c-jazz_chill.png?auto=format&fit=crop&q=80&w=600", txt: "Jazz & Chill" },
+                                            { img: "/public/images/polaroid/c-primeros_momentos.png?auto=format&fit=crop&q=80&w=600", txt: "Ideal para esos primeros momentos..." },
+                                            { img: "/public/images/polaroid/c-instrumental_calidad.png?auto=format&fit=crop&q=80&w=600", txt: "Instrumental de Calidad" }
                                         ].map((item, i) => (
                                             <div key={i} className="scroll-reveal">''
                                                 <div className={`polaroid-item bg-white p-3 pb-12 shadow-2xl transform ${i % 2 === 0 ? '-rotate-2' : 'rotate-2'} hover:rotate-0 transition-transform duration-500 animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
@@ -673,9 +673,9 @@ const App: React.FC = () => {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                         {[
-                                            { img: "/public/images/polaroid/R-Al_corazon.png?auto=format&fit=crop&q=80&w=600", txt: "Al corazón" },
-                                            { img: "/public/images/polaroid/R-Canciones_de_amor.png?auto=format&fit=crop&q=80&w=600", txt: "Canciones de amor" },
-                                            { img: "/public/images/polaroid/R-Nostalgia_y_Lentos.png?auto=format&fit=crop&q=80&w=600", txt: "Nostalgia pura" },
+                                            { img: "/public/images/polaroid/r-al_corazon.png?auto=format&fit=crop&q=80&w=600", txt: "Al corazón" },
+                                            { img: "/public/images/polaroid/r-canciones_de_amor.png?auto=format&fit=crop&q=80&w=600", txt: "Canciones de amor" },
+                                            { img: "/public/images/polaroid/r-nostalgia_y_lentos.png?auto=format&fit=crop&q=80&w=600", txt: "Nostalgia pura" },
                                         ].map((item, i) => (
                                             <div key={i} className="scroll-reveal">
                                                 <div className={`polaroid-item bg-white p-3 pb-12 shadow-2xl transform ${i % 2 === 0 ? 'rotate-1' : '-rotate-1'} hover:rotate-0 transition-transform duration-500 animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
@@ -697,9 +697,9 @@ const App: React.FC = () => {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                         {[
-                                            { img: "/public/images/polaroid/F-Euforia_Total.png?auto=format&fit=crop&q=80&w=600", txt: "Euforia Total" },
-                                            { img: "/public/images/polaroid/F-Canto_y_Fiesta.png?auto=format&fit=crop&q=80&w=600", txt: "Canto & Fiesta" },
-                                            { img: "/public/images/polaroid/F-Hasta_el_final.png?auto=format&fit=crop&q=80&w=600", txt: "Hasta el final" }
+                                            { img: "/public/images/polaroid/f-euforia_total.png?auto=format&fit=crop&q=80&w=600", txt: "Euforia Total" },
+                                            { img: "/public/images/polaroid/f-canto_y_fiesta.png?auto=format&fit=crop&q=80&w=600", txt: "Canto & Fiesta" },
+                                            { img: "/public/images/polaroid/f-hasta_el_final.png?auto=format&fit=crop&q=80&w=600", txt: "Hasta el final" }
                                         ].map((item, i) => (
                                             <div key={i} className="scroll-reveal">
                                                 <div className={`polaroid-item bg-white p-3 pb-12 shadow-2xl transform ${i % 2 === 0 ? '-rotate-3' : 'rotate-3'} hover:rotate-0 transition-transform duration-500 animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
