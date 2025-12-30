@@ -16,11 +16,11 @@ declare global {
 }
 
 const MEMBERS: Member[] = [
-    { id: 1, name: "Nicolás Astorgano", role: "Bajo/Voz", instrumentIcon: "🎸", style: "Groove Elegante", influences: "Funk, Soul, Jazz", image: "./public/images/romanticos/Nico.png" },
-    { id: 2, name: "Juan José Ferreyra", role: "Voz", instrumentIcon: "🎙️", style: "Balada Pop", influences: "Balada Rock, Pop Latino, Bolero", image: "./public/images/romanticos/Juan.png" },
-    { id: 3, name: "Manuel Aguilar", role: "Voz", instrumentIcon: "🎤", style: "Caribe romántico", influences: "Salsa, Pop Latino, Bolero", image: "./public/images/romanticos/Manu.png" },
-    { id: 4, name: "Alan Vispo", role: "Guitarra", instrumentIcon: "🎸", style: "Solo & Textura", influences: "Jazz, Rock, Blues", image: "./public/images/romanticos/Alan.png" },
-    { id: 5, name: "Lautaro Parra", role: "Batería", instrumentIcon: "🥁", style: "El Corazón & Beat", influences: "Jazz, Rock, Pop", image: "./public/images/romanticos/Lauti.png" }
+    { id: 1, name: "Nicolás Astorgano", role: "Bajo/Voz", instrumentIcon: "🎸", style: "Groove Elegante", influences: "Funk, Soul, Jazz", image: "/public/images/romanticos/Nico.png" },
+    { id: 2, name: "Juan José Ferreyra", role: "Voz", instrumentIcon: "🎙️", style: "Balada Pop", influences: "Balada Rock, Pop Latino, Bolero", image: "/public/images/romanticos/Juan.png" },
+    { id: 3, name: "Manuel Aguilar", role: "Voz", instrumentIcon: "🎤", style: "Caribe romántico", influences: "Salsa, Pop Latino, Bolero", image: "/public/images/romanticos/Manu.png" },
+    { id: 4, name: "Alan Vispo", role: "Guitarra", instrumentIcon: "🎸", style: "Solo & Textura", influences: "Jazz, Rock, Blues", image: "/public/images/romanticos/Alan.png" },
+    { id: 5, name: "Lautaro Parra", role: "Batería", instrumentIcon: "🥁", style: "El Corazón & Beat", influences: "Jazz, Rock, Pop", image: "/public/images/romanticos/Lauti.png" }
 ];
 
 type ViewState = 'home' | 'construction';
