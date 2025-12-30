@@ -16,11 +16,11 @@ declare global {
 }
 
 const MEMBERS: Member[] = [
-    { id: 1, name: "Diego Velasco", role: "Saxo / Bajo", instrumentIcon: "🎷", style: "Groove Elegante", influences: "Funk, Soul, Jazz", image: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&q=80&w=600" },
-    { id: 2, name: "Mateo Cruz", role: "Voz Principal", instrumentIcon: "🎙️", style: "Potencia & Carisma", influences: "Luis Miguel, Pop Latino", image: "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&q=80&w=600" },
-    { id: 3, name: "Leo Martinez", role: "Showman", instrumentIcon: "🎤", style: "Energía Pura", influences: "Ska, Rock 90s, Cumbia", image: "https://images.unsplash.com/photo-1525203135335-74d27271d87d?auto=format&fit=crop&q=80&w=600" },
-    { id: 4, name: "Javier Solís", role: "Guitarra", instrumentIcon: "🎸", style: "Solo & Textura", influences: "Santana, Cerati, Prince", image: "https://images.unsplash.com/photo-1514525253361-bee8a18744ad?auto=format&fit=crop&q=80&w=600" },
-    { id: 5, name: "Andrés Silva", role: "Batería", instrumentIcon: "🥁", style: "El Corazón", influences: "Reggae, Tropical, Disco", image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=600" }
+    { id: 1, name: "Nicolás Astorgano", role: "Bajo/Voz", instrumentIcon: "🎸", style: "Groove Elegante", influences: "Funk, Soul, Jazz", image: "../public/images/romanticos/Nico.png" },
+    { id: 2, name: "Juan José Ferreyra", role: "Voz", instrumentIcon: "🎙️", style: "Balada Pop", influences: "Balada Rock, Pop Latino, Bolero", image: "../public/images/romanticos/Juan.png" },
+    { id: 3, name: "Manuel Aguilar", role: "Voz", instrumentIcon: "🎤", style: "Caribe romántico", influences: "Salsa, Pop Latino, Bolero", image: "../public/images/romanticos/Manu.png" },
+    { id: 4, name: "Alan Vispo", role: "Guitarra", instrumentIcon: "🎸", style: "Solo & Textura", influences: "Jazz, Rock, Blues", image: "../public/images/romanticos/Alan.png" },
+    { id: 5, name: "Lautaro Parra", role: "Batería", instrumentIcon: "🥁", style: "El Corazón & Beat", influences: "Jazz, Rock, Pop", image: "../public/images/romanticos/Lauti.png" }
 ];
 
 type ViewState = 'home' | 'construction';
@@ -31,14 +31,14 @@ const App: React.FC = () => {
     const [hasStarted, setHasStarted] = useState(false);
     const [showIntro, setShowIntro] = useState(false); // Init false for fade-in
     const [isMuted, setIsMuted] = useState(false);
-    
+
     // Refs
     const containerRef = useRef<HTMLDivElement>(null);
     const heroRef = useRef<HTMLDivElement>(null);
     const teamRef = useRef<HTMLDivElement>(null);
     const footerRef = useRef<HTMLDivElement>(null);
     const waButtonRef = useRef<HTMLButtonElement>(null);
-    
+
     // Particle Config Ref
     const particleSettings = useRef<ParticleSettings>({
         speedMultiplier: 0.5,
@@ -63,7 +63,7 @@ const App: React.FC = () => {
             body.style.overflow = 'hidden';
         } else {
             body.style.overflow = '';
-            body.style.overflowX = 'hidden'; 
+            body.style.overflowX = 'hidden';
         }
     }, [hasStarted, isMobileMenuOpen]);
 
@@ -81,17 +81,17 @@ const App: React.FC = () => {
     const initAudioContext = async () => {
         const Ctx = window.AudioContext || window.webkitAudioContext;
         if (!Ctx) return;
-        
+
         const ctx = new Ctx();
         audioCtxRef.current = ctx;
         if (ctx.state === 'suspended') await ctx.resume();
-        
+
         const buffer = ctx.createBuffer(1, 1, 22050);
         const source = ctx.createBufferSource();
         source.buffer = buffer;
         source.connect(ctx.destination);
         source.start(0);
-        
+
         playEtherealSwoosh();
         setHasStarted(true);
     };
@@ -102,15 +102,15 @@ const App: React.FC = () => {
             // "Power Down" / Suction effect
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
-            
+
             // Pitch drop (Suction)
             osc.frequency.setValueAtTime(150, t);
             osc.frequency.exponentialRampToValueAtTime(10, t + 0.6);
-            
+
             // Volume suck out
             gain.gain.setValueAtTime(0.5, t);
             gain.gain.linearRampToValueAtTime(0, t + 0.6);
-            
+
             osc.connect(gain);
             gain.connect(ctx.destination);
             osc.start(t);
@@ -121,14 +121,14 @@ const App: React.FC = () => {
             const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
             const data = buffer.getChannelData(0);
             for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
-            
+
             const noise = ctx.createBufferSource();
             noise.buffer = buffer;
             const filter = ctx.createBiquadFilter();
             filter.type = 'lowpass';
             filter.frequency.setValueAtTime(1000, t);
             filter.frequency.exponentialRampToValueAtTime(10, t + 0.5);
-            
+
             const noiseGain = ctx.createGain();
             noiseGain.gain.setValueAtTime(0.3, t);
             noiseGain.gain.linearRampToValueAtTime(0, t + 0.5);
@@ -145,13 +145,13 @@ const App: React.FC = () => {
             // Clean, heavy cinematic boom
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
-            
+
             osc.frequency.setValueAtTime(80, t);
             osc.frequency.exponentialRampToValueAtTime(1, t + 0.5);
-            
+
             gain.gain.setValueAtTime(0.8, t);
             gain.gain.exponentialRampToValueAtTime(0.001, t + 0.5);
-            
+
             osc.connect(gain);
             gain.connect(ctx.destination);
             osc.start(t);
@@ -162,7 +162,7 @@ const App: React.FC = () => {
     const toggleSound = () => {
         const nextState = !isMuted;
         setIsMuted(nextState);
-        
+
         if (nextState) {
             // Muting: Play reverse suction
             playReverseImpact();
@@ -175,19 +175,19 @@ const App: React.FC = () => {
     const playDeepSwoosh = () => {
         playSound((ctx, t) => {
             // Deep, cinematic impact/swoosh for final button
-            const bufferSize = ctx.sampleRate * 4; 
+            const bufferSize = ctx.sampleRate * 4;
             const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
             const data = buffer.getChannelData(0);
             for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
 
             const noise = ctx.createBufferSource();
             noise.buffer = buffer;
-            
+
             // Low pass filter sweeping down aggressively
             const filter = ctx.createBiquadFilter();
             filter.type = 'lowpass';
             filter.frequency.setValueAtTime(800, t);
-            filter.frequency.exponentialRampToValueAtTime(40, t + 2); 
+            filter.frequency.exponentialRampToValueAtTime(40, t + 2);
 
             const gain = ctx.createGain();
             gain.gain.setValueAtTime(1.0, t);
@@ -197,17 +197,17 @@ const App: React.FC = () => {
             filter.connect(gain);
             gain.connect(ctx.destination);
             noise.start(t);
-            
+
             // Sub-bass layer
             const osc = ctx.createOscillator();
             osc.type = 'sine';
             osc.frequency.setValueAtTime(50, t);
             osc.frequency.exponentialRampToValueAtTime(10, t + 2);
-            
+
             const oscGain = ctx.createGain();
             oscGain.gain.setValueAtTime(0.6, t);
             oscGain.gain.exponentialRampToValueAtTime(0.001, t + 2);
-            
+
             osc.connect(oscGain);
             oscGain.connect(ctx.destination);
             osc.start(t);
@@ -221,7 +221,7 @@ const App: React.FC = () => {
             const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
             const data = buffer.getChannelData(0);
             for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
-            
+
             const noise = ctx.createBufferSource();
             noise.buffer = buffer;
             const filter = ctx.createBiquadFilter();
@@ -280,7 +280,7 @@ const App: React.FC = () => {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.frequency.setValueAtTime(150, t);
-            osc.frequency.exponentialRampToValueAtTime(40, t + 0.1); 
+            osc.frequency.exponentialRampToValueAtTime(40, t + 0.1);
             gain.gain.setValueAtTime(0.8, t);
             gain.gain.exponentialRampToValueAtTime(0.001, t + 0.3);
             osc.connect(gain);
@@ -294,17 +294,17 @@ const App: React.FC = () => {
         playSound((ctx, t) => {
             const osc = ctx.createOscillator();
             const oscGain = ctx.createGain();
-            osc.type = 'sine'; 
+            osc.type = 'sine';
             osc.frequency.setValueAtTime(120, t);
-            osc.frequency.exponentialRampToValueAtTime(30, t + 0.8); 
+            osc.frequency.exponentialRampToValueAtTime(30, t + 0.8);
             oscGain.gain.setValueAtTime(1.0, t);
-            oscGain.gain.exponentialRampToValueAtTime(0.001, t + 2.5); 
+            oscGain.gain.exponentialRampToValueAtTime(0.001, t + 2.5);
             osc.connect(oscGain);
             oscGain.connect(ctx.destination);
             osc.start(t);
             osc.stop(t + 2.5);
 
-            const bufferSize = ctx.sampleRate * 2; 
+            const bufferSize = ctx.sampleRate * 2;
             const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
             const data = buffer.getChannelData(0);
             for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
@@ -314,10 +314,10 @@ const App: React.FC = () => {
             const noiseFilter = ctx.createBiquadFilter();
             noiseFilter.type = 'lowpass';
             noiseFilter.frequency.setValueAtTime(800, t);
-            noiseFilter.frequency.exponentialRampToValueAtTime(100, t + 1); 
+            noiseFilter.frequency.exponentialRampToValueAtTime(100, t + 1);
             const noiseGain = ctx.createGain();
             noiseGain.gain.setValueAtTime(0.8, t);
-            noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 1.5); 
+            noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 1.5);
             noise.connect(noiseFilter);
             noiseFilter.connect(noiseGain);
             noiseGain.connect(ctx.destination);
@@ -337,40 +337,40 @@ const App: React.FC = () => {
         }
 
         const runScroll = () => {
-             // 3. Ensure GSAP has latest layout metrics
-             if(window.ScrollTrigger) window.ScrollTrigger.refresh();
+            // 3. Ensure GSAP has latest layout metrics
+            if (window.ScrollTrigger) window.ScrollTrigger.refresh();
 
-             let target: any = 0;
+            let target: any = 0;
 
-             if (action === 'INICIO') {
-                 target = 0;
-             } else if (action === 'LA BANDA') {
-                 // Use selector string for ScrollToPlugin
-                 target = "#banda";
-             } else if (action === 'CONTACTO') {
-                 // FIX: Look for the specific ID we assigned to the footer ScrollTrigger
-                 const st = window.ScrollTrigger.getById("footer-pin");
-                 if (st) {
-                     // Scroll to the absolute END of the pinned section
-                     // This forces the scrub animation to completion (everything visible)
-                     target = st.end; 
-                 } else {
-                     // Fallback to simple anchor scroll
-                     target = "#contacto";
-                 }
-             }
+            if (action === 'INICIO') {
+                target = 0;
+            } else if (action === 'LA BANDA') {
+                // Use selector string for ScrollToPlugin
+                target = "#banda";
+            } else if (action === 'CONTACTO') {
+                // FIX: Look for the specific ID we assigned to the footer ScrollTrigger
+                const st = window.ScrollTrigger.getById("footer-pin");
+                if (st) {
+                    // Scroll to the absolute END of the pinned section
+                    // This forces the scrub animation to completion (everything visible)
+                    target = st.end;
+                } else {
+                    // Fallback to simple anchor scroll
+                    target = "#contacto";
+                }
+            }
 
-             // 4. Use GSAP ScrollToPlugin for accurate travel
-             if (window.gsap) {
+            // 4. Use GSAP ScrollToPlugin for accurate travel
+            if (window.gsap) {
                 window.gsap.to(window, {
                     duration: 1.5,
                     scrollTo: { y: target, autoKill: false },
                     ease: "power3.inOut"
                 });
-             } else {
-                 // Fallback if plugin fails to load
-                 window.scrollTo({ top: typeof target === 'number' ? target : 0, behavior: 'smooth' });
-             }
+            } else {
+                // Fallback if plugin fails to load
+                window.scrollTo({ top: typeof target === 'number' ? target : 0, behavior: 'smooth' });
+            }
         };
 
         if (currentView !== 'home') {
@@ -394,8 +394,8 @@ const App: React.FC = () => {
 
         const ctx = gsap.context(() => {
             gsap.utils.toArray('.scroll-reveal').forEach((el: any) => {
-                gsap.fromTo(el, 
-                    { opacity: 0, y: 50 }, 
+                gsap.fromTo(el,
+                    { opacity: 0, y: 50 },
                     {
                         opacity: 1, y: 0, duration: 1, ease: "power2.out",
                         scrollTrigger: { trigger: el, start: "top 85%" }
@@ -408,15 +408,15 @@ const App: React.FC = () => {
                 scrollTrigger: {
                     id: "footer-pin", // ASSIGN ID FOR NAVIGATION LOOKUP
                     trigger: footerRef.current,
-                    start: "top top", 
-                    end: "+=300%",   
-                    scrub: 1,        
-                    pin: true,       
+                    start: "top top",
+                    end: "+=300%",
+                    scrub: 1,
+                    pin: true,
                     onEnter: () => {
-                            particleSettings.current = { speedMultiplier: 1.8, colorMode: 'multicolor', densityMultiplier: 3 };
+                        particleSettings.current = { speedMultiplier: 1.8, colorMode: 'multicolor', densityMultiplier: 3 };
                     },
                     onLeaveBack: () => {
-                            particleSettings.current = { speedMultiplier: 2, colorMode: 'default', densityMultiplier: 1 };
+                        particleSettings.current = { speedMultiplier: 2, colorMode: 'default', densityMultiplier: 1 };
                     }
                 }
             });
@@ -426,21 +426,21 @@ const App: React.FC = () => {
                 { opacity: 1, scale: 1.2, y: 0, duration: 1.5, ease: "power2.out" }
             );
 
-            masterTl.to("#footer-handwritten", 
+            masterTl.to("#footer-handwritten",
                 { opacity: 0, scale: 2, filter: "blur(10px)", duration: 1 }
             );
 
-            masterTl.fromTo("#hagamos-historia-bg", 
+            masterTl.fromTo("#hagamos-historia-bg",
                 { opacity: 0, scale: 0.8, filter: "blur(20px)" },
-                { 
-                    opacity: 0.4, 
-                    scale: 1.6, 
-                    filter: "blur(4px)", 
+                {
+                    opacity: 0.4,
+                    scale: 1.6,
+                    filter: "blur(4px)",
                     duration: 2,
                     ease: "power2.inOut",
-                    onStart: playImpactSound 
+                    onStart: playImpactSound
                 },
-                "<" 
+                "<"
             );
 
             masterTl.fromTo("#footer-glass-card",
@@ -449,36 +449,36 @@ const App: React.FC = () => {
                 "-=0.5"
             );
 
-            masterTl.fromTo("#footer-line-1", 
-                { y: 30, opacity: 0, scale: 0.9 }, 
+            masterTl.fromTo("#footer-line-1",
+                { y: 30, opacity: 0, scale: 0.9 },
                 { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)", onStart: playEtherealSwoosh },
                 "-=0.2"
             );
-            
-            masterTl.fromTo("#footer-line-2", 
-                { y: 30, opacity: 0, scale: 0.9 }, 
+
+            masterTl.fromTo("#footer-line-2",
+                { y: 30, opacity: 0, scale: 0.9 },
                 { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)", onStart: playEtherealSwoosh },
                 "+=0.1"
             );
 
-            masterTl.fromTo("#footer-line-3", 
-                { y: 30, opacity: 0, scale: 0.9 }, 
+            masterTl.fromTo("#footer-line-3",
+                { y: 30, opacity: 0, scale: 0.9 },
                 { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)", onStart: playEtherealSwoosh },
                 "+=0.1"
             );
 
-            masterTl.fromTo(".footer-icon-group", 
-                { y: 30, opacity: 0 }, 
-                { y: 0, opacity: 1, stagger: 0.2, duration: 0.6, ease: "power2.out" }, 
+            masterTl.fromTo(".footer-icon-group",
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, stagger: 0.2, duration: 0.6, ease: "power2.out" },
                 "+=0.2"
             );
 
-            masterTl.fromTo("#footer-cta", 
+            masterTl.fromTo("#footer-cta",
                 { scale: 0.9, opacity: 0 },
-                { 
-                    scale: 1, 
-                    opacity: 1, 
-                    duration: 1, 
+                {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 1,
                     ease: "power2.out",
                     onStart: () => {
                         if (!isMuted) playDeepSwoosh();
@@ -493,9 +493,9 @@ const App: React.FC = () => {
             ScrollTrigger.create({
                 trigger: "#phase-yellow",
                 start: "top center",
-                onEnter: () => { 
-                    particleSettings.current = { speedMultiplier: 3, colorMode: 'yellow', densityMultiplier: 1 }; 
-                    if (!isMuted) playJazzChord(); 
+                onEnter: () => {
+                    particleSettings.current = { speedMultiplier: 3, colorMode: 'yellow', densityMultiplier: 1 };
+                    if (!isMuted) playJazzChord();
                 },
                 onEnterBack: () => { particleSettings.current = { speedMultiplier: 3, colorMode: 'yellow', densityMultiplier: 1 }; }
             });
@@ -503,9 +503,9 @@ const App: React.FC = () => {
             ScrollTrigger.create({
                 trigger: "#phase-blue",
                 start: "top center",
-                onEnter: () => { 
-                    particleSettings.current = { speedMultiplier: 1.5, colorMode: 'blue', densityMultiplier: 1 }; 
-                    if (!isMuted) playEtherealSwoosh(); 
+                onEnter: () => {
+                    particleSettings.current = { speedMultiplier: 1.5, colorMode: 'blue', densityMultiplier: 1 };
+                    if (!isMuted) playEtherealSwoosh();
                 },
                 onEnterBack: () => { particleSettings.current = { speedMultiplier: 1.5, colorMode: 'blue', densityMultiplier: 1 }; }
             });
@@ -513,9 +513,9 @@ const App: React.FC = () => {
             ScrollTrigger.create({
                 trigger: "#phase-pink",
                 start: "top center",
-                onEnter: () => { 
-                    particleSettings.current = { speedMultiplier: 5, colorMode: 'pink', densityMultiplier: 1.5 }; 
-                    if (!isMuted) playPartyKick(); 
+                onEnter: () => {
+                    particleSettings.current = { speedMultiplier: 5, colorMode: 'pink', densityMultiplier: 1.5 };
+                    if (!isMuted) playPartyKick();
                 },
                 onEnterBack: () => { particleSettings.current = { speedMultiplier: 5, colorMode: 'pink', densityMultiplier: 1.5 }; }
             });
@@ -523,8 +523,8 @@ const App: React.FC = () => {
             ScrollTrigger.create({
                 trigger: "#banda",
                 start: "top center",
-                onEnter: () => { 
-                    particleSettings.current = { speedMultiplier: 0, colorMode: 'default', densityMultiplier: 0 }; 
+                onEnter: () => {
+                    particleSettings.current = { speedMultiplier: 0, colorMode: 'default', densityMultiplier: 0 };
                 }
             });
 
@@ -533,78 +533,78 @@ const App: React.FC = () => {
                 tlHero.to("#main-title", { y: -150, opacity: 0, scale: 0.9, filter: "blur(10px)" }, 0);
                 tlHero.to("#sub-title", { y: -50, opacity: 0 }, 0);
             }
-        }, containerRef); 
-        
+        }, containerRef);
+
         return () => {
             ctx.revert();
-        }; 
-    }, [currentView, hasStarted, isMuted]); 
+        };
+    }, [currentView, hasStarted, isMuted]);
 
     return (
         <div ref={containerRef} className="bg-[#050505] min-h-screen text-white overflow-x-hidden selection:bg-[#E91E63] selection:text-white font-sans">
             <ParticleCanvas settingsRef={particleSettings} />
-            
+
             {/* Navigation */}
             <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference">
-                 <div className="flex items-center gap-6">
+                <div className="flex items-center gap-6">
                     <div className="font-['Anton'] text-2xl tracking-widest cursor-pointer select-none text-white" onClick={() => handleNav('INICIO')}>LR</div>
-                 </div>
-                 
-                 <div className="flex items-center gap-6">
-                     {/* Desktop Links */}
-                     <div className="hidden md:flex gap-8 items-center">
-                         {['INICIO', 'LA BANDA', 'HISTORIA', 'AGENDA', 'CONTACTO'].map(item => (
-                             <button 
+                </div>
+
+                <div className="flex items-center gap-6">
+                    {/* Desktop Links */}
+                    <div className="hidden md:flex gap-8 items-center">
+                        {['INICIO', 'LA BANDA', 'HISTORIA', 'AGENDA', 'CONTACTO'].map(item => (
+                            <button
                                 key={item}
                                 onClick={() => handleNav(item)}
                                 className="font-['Montserrat'] text-[10px] font-bold tracking-[0.2em] text-white hover:text-[#D4AF37] transition-colors uppercase"
-                             >
-                                 {item}
-                             </button>
-                         ))}
-                     </div>
+                            >
+                                {item}
+                            </button>
+                        ))}
+                    </div>
 
-                     {/* Audio Toggle - Visible Mobile & Desktop */}
-                     <button onClick={toggleSound} className="text-[10px] font-bold tracking-[0.2em] text-white/80 hover:text-[#E91E63] transition-colors uppercase flex items-center gap-2">
-                         <span>{isMuted ? 'UNMUTE' : 'MUTE'}</span>
-                         <span className="text-sm">{isMuted ? '🔇' : '🔊'}</span>
-                     </button>
+                    {/* Audio Toggle - Visible Mobile & Desktop */}
+                    <button onClick={toggleSound} className="text-[10px] font-bold tracking-[0.2em] text-white/80 hover:text-[#E91E63] transition-colors uppercase flex items-center gap-2">
+                        <span>{isMuted ? 'UNMUTE' : 'MUTE'}</span>
+                        <span className="text-sm">{isMuted ? '🔇' : '🔊'}</span>
+                    </button>
 
-                     {/* Mobile Hamburger */}
-                     <button className="md:hidden text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                         <span className="font-['Montserrat'] text-[10px] font-bold tracking-widest">{isMobileMenuOpen ? 'CLOSE' : 'MENU'}</span>
-                     </button>
-                 </div>
+                    {/* Mobile Hamburger */}
+                    <button className="md:hidden text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                        <span className="font-['Montserrat'] text-[10px] font-bold tracking-widest">{isMobileMenuOpen ? 'CLOSE' : 'MENU'}</span>
+                    </button>
+                </div>
             </nav>
 
             {/* Mobile Menu */}
             <div className={`fixed inset-0 bg-black z-40 flex flex-col items-center justify-center gap-8 transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                 {['INICIO', 'LA BANDA', 'HISTORIA', 'AGENDA', 'CONTACTO'].map((item, i) => (
-                     <button 
+                {['INICIO', 'LA BANDA', 'HISTORIA', 'AGENDA', 'CONTACTO'].map((item, i) => (
+                    <button
                         key={item}
                         onClick={() => handleNav(item)}
                         className="font-['Anton'] text-5xl text-white hover:text-[#E91E63] transition-colors"
                         style={{ transitionDelay: `${i * 50}ms` }}
-                     >
-                         {item}
-                     </button>
-                 ))}
+                    >
+                        {item}
+                    </button>
+                ))}
             </div>
-            
+
             <AudioController isPlaying={hasStarted} setPlaying={setHasStarted} isMuted={isMuted} />
-            
+
             {/* Intro Overlay */}
             {!hasStarted && (
                 <div className="fixed inset-0 z-[100] bg-[#050505] flex items-center justify-center cursor-pointer" onClick={initAudioContext}>
-                     <div className={`text-center transition-all duration-1000 transform ${showIntro ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                         <p className="font-['Montserrat'] text-[#D4AF37] text-[10px] tracking-[0.6em] mb-6 uppercase animate-pulse">Experiencia Inmersiva</p>
-                         <h1 className="font-['Anton'] text-7xl md:text-9xl text-white mb-10 tracking-tighter leading-none">LOS<br/>ROMÁNTICOS</h1>
-                         <div className="inline-flex items-center gap-4 group">
+                    <div className={`text-center transition-all duration-1000 transform ${showIntro ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                        <p className="font-['Montserrat'] text-[#D4AF37] text-[10px] tracking-[0.6em] mb-6 uppercase animate-pulse">Experiencia Inmersiva</p>
+                        <h1 className="font-['Anton'] text-7xl md:text-9xl text-white mb-10 tracking-tighter leading-none">LOS<br />ROMÁNTICOS</h1>
+                        <div className="inline-flex items-center gap-4 group">
                             <div className="h-[1px] w-12 bg-white/20 group-hover:w-20 transition-all duration-500"></div>
-                             <span className="font-['Montserrat'] text-[10px] tracking-[0.4em] text-white group-hover:text-[#E91E63] transition-colors">ENTRAR</span>
+                            <span className="font-['Montserrat'] text-[10px] tracking-[0.4em] text-white group-hover:text-[#E91E63] transition-colors">ENTRAR</span>
                             <div className="h-[1px] w-12 bg-white/20 group-hover:w-20 transition-all duration-500"></div>
-                         </div>
-                     </div>
+                        </div>
+                    </div>
                 </div>
             )}
 
@@ -624,7 +624,7 @@ const App: React.FC = () => {
                                         <span className="absolute -bottom-2 left-0 w-full h-[1px] bg-[#E91E63] scale-x-0 transition-transform duration-1000 delay-500 origin-left animate-expand"></span>
                                     </p>
                                 </div>
-                                
+
                                 <div className="absolute bottom-12 flex flex-col items-center gap-4 opacity-50 animate-bounce">
                                     <span className="text-[9px] uppercase tracking-[0.6em] text-white/60">Descubre el Viaje</span>
                                     <div className="w-[1px] h-16 bg-gradient-to-b from-[#E91E63] to-transparent"></div>
@@ -634,10 +634,10 @@ const App: React.FC = () => {
                             <div className="py-20 relative z-20 space-y-32">
                                 <div className="text-center mb-20 scroll-reveal">
                                     <p className="emotion-text text-[#E91E63] font-black uppercase tracking-[0.4em] text-xs mb-4">El Concepto</p>
-                                        <h2 className="emotion-text font-['Anton'] text-5xl md:text-7xl leading-tight text-white">
-                                            NO ES SOLO UN SHOW. <br />
-                                            ES UN <span className="text-[#D4AF37] italic">VIAJE</span>.
-                                        </h2>
+                                    <h2 className="emotion-text font-['Anton'] text-5xl md:text-7xl leading-tight text-white">
+                                        NO ES SOLO UN SHOW. <br />
+                                        ES UN <span className="text-[#D4AF37] italic">VIAJE</span>.
+                                    </h2>
                                 </div>
 
                                 {/* PHOTO GRIDS */}
@@ -649,12 +649,12 @@ const App: React.FC = () => {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                         {[
-                                            { img: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&q=80&w=600", txt: "Ambiente sofisticado" },
-                                            { img: "https://images.unsplash.com/photo-1574352067721-72d5913ef8e1?auto=format&fit=crop&q=80&w=600", txt: "Jazz & Chill" },
-                                            { img: "https://images.unsplash.com/photo-1556647944-175596ce2a92?auto=format&fit=crop&q=80&w=600", txt: "Rompiendo el hielo" }
+                                            { img: "../public/images/polaroid/C-Jazz_Chill.png?auto=format&fit=crop&q=80&w=600", txt: "Jazz & Chill" },
+                                            { img: "../public/images/polaroid/C-primeros_momentos.png?auto=format&fit=crop&q=80&w=600", txt: "Ideal para esos primeros momentos..." },
+                                            { img: "../public/images/polaroid/C-Instrumental_Calidad.png?auto=format&fit=crop&q=80&w=600", txt: "Instrumental de Calidad" }
                                         ].map((item, i) => (
-                                            <div key={i} className="scroll-reveal">
-                                                <div className={`polaroid-item bg-white p-3 pb-12 shadow-2xl transform ${i%2===0 ? '-rotate-2' : 'rotate-2'} hover:rotate-0 transition-transform duration-500 animate-float`} style={{animationDelay: `${i * 0.5}s`}}>
+                                            <div key={i} className="scroll-reveal">''
+                                                <div className={`polaroid-item bg-white p-3 pb-12 shadow-2xl transform ${i % 2 === 0 ? '-rotate-2' : 'rotate-2'} hover:rotate-0 transition-transform duration-500 animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
                                                     <div className="aspect-square bg-gray-200 overflow-hidden mb-4 grayscale hover:grayscale-0 transition-all duration-700">
                                                         <img src={item.img} className="w-full h-full object-cover" alt="Moment" />
                                                     </div>
@@ -664,7 +664,7 @@ const App: React.FC = () => {
                                         ))}
                                     </div>
                                 </section>
-                                
+
                                 <section id="phase-blue" className="max-w-7xl mx-auto px-6">
                                     <div className="flex flex-col items-center mb-12 scroll-reveal">
                                         <div className="bg-black border border-[#00B4D8] shadow-[0_0_15px_#00B4D8] w-20 h-20 rounded-full flex items-center justify-center text-4xl mb-6 relative z-10 animate-float">💙</div>
@@ -673,12 +673,12 @@ const App: React.FC = () => {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                         {[
-                                            { img: "https://images.unsplash.com/photo-1516575334481-f85287c2c81d?auto=format&fit=crop&q=80&w=600", txt: "Al corazón" },
-                                            { img: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&q=80&w=600", txt: "Nostalgia pura" },
-                                            { img: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=600", txt: "Momentos únicos" }
+                                            { img: "../public/images/polaroid/R-Al_corazon.png?auto=format&fit=crop&q=80&w=600", txt: "Al corazón" },
+                                            { img: "../public/images/polaroid/R-Canciones_de_amor.png?auto=format&fit=crop&q=80&w=600", txt: "Canciones de amor" },
+                                            { img: "../public/images/polaroid/R-Nostalgia_y_Lentos.png?auto=format&fit=crop&q=80&w=600", txt: "Nostalgia pura" },
                                         ].map((item, i) => (
                                             <div key={i} className="scroll-reveal">
-                                                <div className={`polaroid-item bg-white p-3 pb-12 shadow-2xl transform ${i%2===0 ? 'rotate-1' : '-rotate-1'} hover:rotate-0 transition-transform duration-500 animate-float`} style={{animationDelay: `${i * 0.5}s`}}>
+                                                <div className={`polaroid-item bg-white p-3 pb-12 shadow-2xl transform ${i % 2 === 0 ? 'rotate-1' : '-rotate-1'} hover:rotate-0 transition-transform duration-500 animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
                                                     <div className="aspect-square bg-gray-200 overflow-hidden mb-4 contrast-125 sepia-[.3]">
                                                         <img src={item.img} className="w-full h-full object-cover" alt="Moment" />
                                                     </div>
@@ -697,12 +697,12 @@ const App: React.FC = () => {
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                         {[
-                                            { img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=600", txt: "Euforia Total" },
-                                            { img: "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?auto=format&fit=crop&q=80&w=600", txt: "Pogo & Fiesta" },
-                                            { img: "https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&q=80&w=600", txt: "Hasta el final" }
+                                            { img: "../public/images/polaroid/F-Euforia_Total.png?auto=format&fit=crop&q=80&w=600", txt: "Euforia Total" },
+                                            { img: "../public/images/polaroid/F-Canto_y_Fiesta.png?auto=format&fit=crop&q=80&w=600", txt: "Canto & Fiesta" },
+                                            { img: "../public/images/polaroid/F-Hasta_el_final.png?auto=format&fit=crop&q=80&w=600", txt: "Hasta el final" }
                                         ].map((item, i) => (
                                             <div key={i} className="scroll-reveal">
-                                                <div className={`polaroid-item bg-white p-3 pb-12 shadow-2xl transform ${i%2===0 ? '-rotate-3' : 'rotate-3'} hover:rotate-0 transition-transform duration-500 animate-float`} style={{animationDelay: `${i * 0.5}s`}}>
+                                                <div className={`polaroid-item bg-white p-3 pb-12 shadow-2xl transform ${i % 2 === 0 ? '-rotate-3' : 'rotate-3'} hover:rotate-0 transition-transform duration-500 animate-float`} style={{ animationDelay: `${i * 0.5}s` }}>
                                                     <div className="aspect-square bg-gray-200 overflow-hidden mb-4 saturate-150 contrast-125">
                                                         <img src={item.img} className="w-full h-full object-cover" alt="Moment" />
                                                     </div>
@@ -727,26 +727,26 @@ const App: React.FC = () => {
                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 px-4 max-w-6xl mx-auto w-full">
                                     {MEMBERS.map((member, i) => (
                                         <div key={member.id} className="member-card-wrapper scroll-reveal">
-                                            <MemberCard member={member} onFlip={() => !isMuted && playFlipSound()} style={{animationDelay: `${i * 0.3}s`}} />
+                                            <MemberCard member={member} onFlip={() => !isMuted && playFlipSound()} style={{ animationDelay: `${i * 0.3}s` }} />
                                         </div>
                                     ))}
                                 </div>
                             </section>
 
                             <footer id="contacto" ref={footerRef} className="h-screen flex flex-col items-center justify-center relative overflow-hidden bg-transparent">
-                                
+
                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
                                     <h1 id="footer-handwritten" className="font-['Dancing_Script'] text-6xl md:text-8xl text-[#E91E63] absolute opacity-0 z-20 text-center">
-                                        Hagamos<br/>Historia
+                                        Hagamos<br />Historia
                                     </h1>
                                     <h1 id="hagamos-historia-bg" className="font-['Anton'] text-[20vw] leading-none text-[#E91E63] text-center opacity-0 whitespace-nowrap origin-center z-10 select-none pointer-events-none drop-shadow-[0_0_15px_rgba(233,30,99,0.8)]">
-                                        HAGAMOS<br/>HISTORIA
+                                        HAGAMOS<br />HISTORIA
                                     </h1>
                                 </div>
 
                                 <div id="footer-initial-content" className="relative z-50 flex flex-col items-center w-full max-w-4xl mx-auto px-4 pb-20">
                                     <div id="footer-glass-card" className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl flex flex-col items-center w-full opacity-0">
-                                        
+
                                         <div className="flex flex-col items-center space-y-4 mb-12 w-full">
                                             <h2 id="footer-line-1" className="font-['Anton'] text-5xl md:text-7xl uppercase leading-none tracking-tighter text-[#00B4D8] drop-shadow-2xl opacity-0">TU EVENTO</h2>
                                             <h2 id="footer-line-2" className="font-['Anton'] text-5xl md:text-7xl uppercase leading-none tracking-tighter text-[#D4AF37] drop-shadow-2xl opacity-0">MERECE</h2>
@@ -774,8 +774,9 @@ const App: React.FC = () => {
                                         </div>
 
                                         <div id="footer-cta" className="opacity-0 pointer-events-auto animate-float">
-                                            <button 
+                                            <button
                                                 ref={waButtonRef}
+                                                onClick={() => window.open('https://wa.link/5eo7m4', '_blank')}
                                                 className="group relative border border-[#D4AF37] backdrop-blur-sm bg-black/30 py-4 px-12 md:px-16 overflow-hidden transition-all duration-500 hover:border-[#E91E63]"
                                             >
                                                 <div className="absolute inset-0 bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
@@ -789,11 +790,11 @@ const App: React.FC = () => {
                                 </div>
 
                                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120%] h-[60vh] bg-gradient-to-t from-[#E91E63]/20 to-transparent blur-[120px] pointer-events-none z-0"></div>
-                                
+
                                 {/* PREMIUM FOOTER BAR - REFACTORED */}
                                 <div className="absolute bottom-0 left-0 w-full z-20 bg-gradient-to-t from-black via-black/90 to-transparent pb-6 pt-12">
                                     <div className="max-w-7xl mx-auto px-6 flex flex-row items-center justify-center gap-4 md:gap-8">
-                                        
+
                                         <a href="#" className="group">
                                             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70 group-hover:text-[#D4AF37] transition-colors font-['Montserrat']">Instagram</span>
                                         </a>
