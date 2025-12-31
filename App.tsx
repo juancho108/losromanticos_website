@@ -795,7 +795,7 @@ const App: React.FC = () => {
                                 <div className="absolute bottom-0 left-0 w-full z-20 bg-gradient-to-t from-black via-black/90 to-transparent pb-6 pt-12">
                                     <div className="max-w-7xl mx-auto px-6 flex flex-row items-center justify-center gap-4 md:gap-8">
 
-                                        <a href="#" className="group">
+                                        <a href="https://www.instagram.com/losromanticos.oficial/" className="group">
                                             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70 group-hover:text-[#D4AF37] transition-colors font-['Montserrat']">Instagram</span>
                                         </a>
 
@@ -806,7 +806,7 @@ const App: React.FC = () => {
 
                                         <span className="text-[#D4AF37] text-xs">•</span>
 
-                                        <a href="#" className="group">
+                                        <a href="mailto:losromanticosoficial@gmail.com" className="group">
                                             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70 group-hover:text-[#D4AF37] transition-colors font-['Montserrat']">Email</span>
                                         </a>
 
