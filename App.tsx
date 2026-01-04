@@ -776,7 +776,7 @@ const App: React.FC = () => {
                                         <div id="footer-cta" className="opacity-0 pointer-events-auto animate-float">
                                             <button
                                                 ref={waButtonRef}
-                                                onClick={() => window.open('https://wa.link/5eo7m4', '_blank')}
+                                                onClick={() => window.open('https://wa.link/4de2yk', '_blank')}
                                                 className="group relative border border-[#D4AF37] backdrop-blur-sm bg-black/30 py-4 px-12 md:px-16 overflow-hidden transition-all duration-500 hover:border-[#E91E63]"
                                             >
                                                 <div className="absolute inset-0 bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
